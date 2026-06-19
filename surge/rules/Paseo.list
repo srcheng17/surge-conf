@@ -1,0 +1,5 @@
+# NAME: Paseo
+# DESCRIPTION: Paseo app, web pairing page, and hosted relay.
+# DOMAIN-SUFFIX: 1
+# TOTAL: 1
+DOMAIN-SUFFIX,paseo.sh
