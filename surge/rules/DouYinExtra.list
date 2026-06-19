@@ -1,0 +1,6 @@
+# NAME: DouYinExtra
+# DESCRIPTION: Supplemental DouYin rules observed from iPhone Surge traffic.
+# DOMAIN-SUFFIX: 2
+# TOTAL: 2
+DOMAIN-SUFFIX,amemv.com
+DOMAIN-SUFFIX,zjcdn.com
