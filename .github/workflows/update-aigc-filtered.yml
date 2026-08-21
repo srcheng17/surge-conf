@@ -1,0 +1,47 @@
+name: Update AIGC filtered rules
+
+on:
+  schedule:
+    # Avoid the top of the hour, when scheduled Actions are most likely to queue.
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-aigc-filtered-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.repository == 'srcheng17/surge-conf'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Test filter logic
+        run: node --test test/update-aigc-filtered.test.mjs
+
+      - name: Download and filter upstream rules
+        run: node scripts/update-aigc-filtered.mjs
+
+      - name: Commit an upstream change
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git add -- surge/rules/AIGC-filtered.list
+          if git diff --cached --quiet --exit-code; then
+            echo "AIGC rules are already current."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git diff --cached --check
+          git commit -m "chore: update filtered AIGC rules"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
