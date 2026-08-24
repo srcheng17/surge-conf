@@ -1,11 +1,13 @@
 # NAME: Filtered AIGC rules
 # AUTHOR: Rabbit-Spec (upstream), srcheng17 (filter)
 # SOURCE: https://raw.githubusercontent.com/Rabbit-Spec/Surge/Master/Rules/AIGC.list
-# BASE TOTAL: 127
-# FILTERED TOTAL: 125
+# BASE TOTAL: 129
+# FILTERED TOTAL: 127
 # LOCAL FILTER: Removed IP-ASN 13335 (Cloudflare) and 20473 (Vultr/The Constant Company).
 # AUTO-GENERATED: Changes are managed by GitHub Actions.
 
+DOMAIN-SUFFIX,cursor.com
+DOMAIN-SUFFIX,cursor.sh
 DOMAIN,7h15.ru1353t.1s.m4d3.by.5ukk4w.skk.moe
 DOMAIN,ai.google.dev
 DOMAIN,aida.googleapis.com
